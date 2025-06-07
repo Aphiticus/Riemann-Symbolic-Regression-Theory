@@ -1,3 +1,5 @@
+#*** THIS CREATES ZETA'S FOR TESTING ***
+
 # Using the mpmath library for computing the Riemann zeta function is preferred over a custom implementation for 
 # several important reasons:
 
