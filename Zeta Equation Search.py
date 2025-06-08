@@ -30,7 +30,7 @@ PYSR_UNARY_OPERATORS = ["sin", "cos", "exp", "log", "sqrt", "abs"]  # Functions 
 PYSR_POPULATIONS = 1000  # Number of populations in the evolutionary search. Increase for more diversity, decrease for faster runs.
 PYSR_POPULATION_SIZE = 100  # Number of individuals per population. Higher values allow more candidate equations per generation, but use more memory.
 PYSR_NITERATIONS = 200  # Number of evolutionary iterations. Increase for more thorough search (slower), decrease for faster but less thorough search.
-PYSR_MAXSIZE = 15  # Maximum size (complexity) of equations. Increase to allow more complex equations, decrease for simpler results.
+PYSR_MAXSIZE = 40  # Maximum size (complexity) of equations. Increase to allow more complex equations, decrease for simpler results.
 PYSR_ELEMENTWISE_LOSS = "(x, y) -> (x - y)^2"  # Loss function for regression. Change to other loss functions for different error metrics.
 PYSR_VERBOSITY = 1  # Level of output detail. 0 = silent, higher = more logging.
 PYSR_CONSTRAINTS = {"pow": (-1, 1)}  # Constraints on operators. E.g., restrict "pow" exponents to between -1 and 1.
@@ -38,7 +38,17 @@ PYSR_BATCHING = True  # Whether to use batching for large datasets. Set False fo
 PYSR_BATCH_SIZE = 50000  # Batch size for training. Increase for faster training if memory allows, decrease if running out of memory.
 PYSR_NCYCLES_PER_ITERATION = 100  # Number of cycles per iteration. Higher = more search per iteration (slower but more thorough).
 
-ACCURACY_THRESHOLD = 0.001  # or 1e-3, Threshold for considering an equation "accurate enough" (e.g., for filtering or stopping criteria)
+ACCURACY_THRESHOLD = 0.0005  # or 1e-3, Threshold for considering an equation "accurate enough" (e.g., for filtering or stopping criteria)
+
+# --- Symbolic regression and equation filtering hyperparameters ---
+
+# Minimum R² score (coefficient of determination) required to consider an equation "excellent".
+# 1.0 is perfect fit, 0.99 means 99% of variance explained. Increase for stricter filtering.
+SCORE_THRESHOLD = 0.99
+
+# Maximum mean squared error (MSE) allowed for an equation to be considered "excellent".
+# Lower values mean stricter filtering. Adjust based on the scale of your target variable.
+MSE_THRESHOLD = 1e-4
 
 # Set outputs directory inside the Riemann folder
 OUTPUTS_DIR = os.path.join(os.path.dirname(__file__), "outputs")
@@ -71,13 +81,14 @@ if mode == 'yes':
         logging.error("No CSV file selected. Exiting.")
         print("No file selected. Exiting.")
         exit()
-    # Save log file in outputs directory by default
-    default_log = os.path.join(OUTPUTS_DIR, "equation_discovery_log.csv")
+    # Save log file in the same directory as the selected CSV
+    csv_dir = os.path.dirname(csv_file_path)
+    default_log = os.path.join(csv_dir, "equation_discovery_log.csv")
     log_file = filedialog.asksaveasfilename(
         title="Save Log File As",
         defaultextension=".csv",
         initialfile=os.path.basename(default_log),
-        initialdir=OUTPUTS_DIR,
+        initialdir=csv_dir,
         filetypes=[("CSV Files", "*.csv")]
     )
     if not log_file:
@@ -90,6 +101,7 @@ else:
     logging.info("User selected 'Continue from Previous Log' mode.")
     log_file = filedialog.askopenfilename(
         title="Select Existing Log File",
+        # Use the outputs dir as a fallback, but user can navigate to the CSV dir
         initialdir=OUTPUTS_DIR,
         filetypes=[("CSV Files", "*.csv")]
     )
@@ -112,33 +124,42 @@ else:
             logged_equations.add(row["Equation"])
     resume = True
 logging.info(f"Loading CSV file: {csv_file_path}")
-data = pd.read_csv(csv_file_path, delimiter=None)
 
-def parse_s(s):
-    """
-    Parse a string representing a complex number (with 'i' or 'j') and return a Python complex object.
-    """
-    s = s.replace(' ', '').replace('i', 'j')
-    if s.startswith('(') and s.endswith(')'):
-        s = s[1:-1]
-    return complex(s)
-
-data['s_complex'] = data['s'].apply(parse_s)
-data['s_real'] = data['s_complex'].apply(lambda x: x.real)
-data['s_imag'] = data['s_complex'].apply(lambda x: x.imag)
+# --- Begin replacement for new CSV structure ---
+data = pd.read_csv(csv_file_path)
+data['s_real'] = data['s_real'].astype(float)
+data['s_imag'] = data['s_imag'].astype(float)
+data['d_zeta_real'] = data['dZeta Real'].astype(float)
 data['zeta_real'] = data['Zeta Real'].astype(float)
-data['zeta_imag'] = data['Zeta Imag'].astype(float)
-X = data[['s_real', 's_imag']].values
-y_real = data['zeta_real'].values
-y_imag = data['zeta_imag'].values
 
-part = messagebox.askquestion("Regression Target", "Fit real part of zeta(s)?\n(Click 'No' for imaginary part)")
-if part == 'yes':
-    y_vals = y_real
-    logging.info("Fitting real part of zeta(s).")
-else:
-    y_vals = y_imag
-    logging.info("Fitting imaginary part of zeta(s).")
+# You can experiment with different input sets for X:
+# X = data[['s_real', 's_imag']].values         # Just s (on the critical line, s_real is constant)
+X = data[['s_imag', 'd_zeta_real']].values      # Only t and delta zeta real (most direct for line)
+# X = data[['s_real', 's_imag', 'd_zeta_real']].values  # All features
+
+y_vals = data['zeta_real'].values
+logging.info("Fitting Zeta Real.")
+# --- End replacement ---
+
+# Remove the old block:
+# def parse_s(s):
+#     ...
+# data['s_complex'] = data['s'].apply(parse_s)
+# data['s_real'] = data['s_complex'].apply(lambda x: x.real)
+# data['s_imag'] = data['s_complex'].apply(lambda x: x.imag)
+# data['zeta_real'] = data['Zeta Real'].astype(float)
+# data['zeta_imag'] = data['Zeta Imag'].astype(float)
+# X = data[['s_real', 's_imag']].values
+# y_real = data['zeta_real'].values
+# y_imag = data['zeta_imag'].values
+#
+# part = messagebox.askquestion("Regression Target", "Fit real part of zeta(s)?\n(Click 'No' for imaginary part)")
+# if part == 'yes':
+#     y_vals = y_real
+#     logging.info("Fitting real part of zeta(s).")
+# else:
+#     y_vals = y_imag
+#     logging.info("Fitting imaginary part of zeta(s).")
 
 @njit(parallel=True, fastmath=True)
 def evaluate_equation(func, x_values):
@@ -245,6 +266,12 @@ while True:
                     )
                     print(f"Equation: {eqn_str}, MSE: {mse:.5f}, Score: {score:.5f}") 
                     logging.info(f"Logged Equation: {eqn_str}, MSE: {mse:.5f}, Score: {score:.5f}")
+
+                    # --- Save and break if both criteria are met ---
+                    if score > SCORE_THRESHOLD and mse < MSE_THRESHOLD:
+                        print(f"Found excellent equation (Score > {SCORE_THRESHOLD} and MSE < {MSE_THRESHOLD}): {eqn_str}")
+                        logging.info(f"Excellent equation found: {eqn_str}")
+                        break
             except KeyboardInterrupt:
                 logging.warning("Search interrupted by user. Progress saved.")
                 print("Search interrupted by user. All processed equations have been saved.")
