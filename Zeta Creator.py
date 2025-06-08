@@ -18,6 +18,17 @@
 # Reliability:
 # The library is well-tested and widely used in the mathematical and scientific Python community, reducing the risk of subtle bugs.
 
+# The output CSV File produces enough training data to help the equation finder perform its symbolic regression of the Riemann Hypothesis. 
+#    s	       |  s_real |	s_imag  |	dZeta Real	 |   Zeta Real
+# 0.5+1000j	   |  0.5	 |  1000	|   0	         |   0.356334367
+# 0.5+1000.1j  |  0.5	 |  1000.1	|   0.488957845	 |   0.845292212
+    # CSV columns explained:
+    #   s           : The complex argument to the Riemann zeta function (s = s_real + s_imag * i)
+    #   s_real      : The real part of s
+    #   s_imag      : The imaginary part of s
+    #   dZeta Real  : The difference in the real part of zeta(s) between consecutive s values (not currently output)
+    #   Zeta Real   : The real part of the computed Riemann zeta function at s
+
 import mpmath
 import csv
 import os
