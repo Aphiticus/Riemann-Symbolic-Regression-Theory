@@ -4,19 +4,24 @@
 # Designed for large scale interactive and fault tolerant equation discovery  
 # Includes a full logging pipeline  
 
+# Be sure to include the flat_index_gpu.py file in the same directory. And download all the library files required to run this.
+
+import os
+import re
+import csv
+import logging
+from collections import Counter
+
 import numpy as np
 import pandas as pd
 from pysr import PySRRegressor
-import csv
 from numba import njit, prange
+from tqdm import tqdm
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from tqdm import tqdm
-import os
-import re
-from collections import Counter
+
 from flat_index_gpu import FlatIndexGPU
-import logging
 
 # PySR symbolic regression hyperparameters making it easy for user to adjust and test with the Zeta csv file:
 
