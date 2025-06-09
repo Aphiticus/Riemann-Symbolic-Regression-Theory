@@ -35,8 +35,10 @@ s	s_real	s_imag	dZeta Real	Zeta Real
 0.5+1000j	0.5	1000	0	0.3563
 0.5+1000.1j	0.5	1000.1	0.4889	0.8452
 Figure 1 by the Author
-The following demonstrates how the Zeta Equation Search script uses symbolic regression to improve its prediction of the real part of a Riemann zeta zero, as measured by mean squared error (MSE): 
-Initial Equation (High MSE, e.g., 2.688): This is a very rough estimate, representing an early, simple candidate equation.
+
+The following demonstrates how the Zeta Equation Search script uses symbolic regression to improve its prediction of the real part of a Riemann zeta zero, as measured by mean squared error (MSE):
+Initial Equation (High MSE, e.g., 2.688): 
+This is a very rough estimate, representing an early, simple candidate equation.
   x0 + 69931.58
 
 Intermediate Equation (Lower MSE, e.g., 1.375): This equation is more complex and fits the data much better, as shown by the much lower MSE.
