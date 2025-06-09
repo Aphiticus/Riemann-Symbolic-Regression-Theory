@@ -83,7 +83,7 @@ Instruction for how to test theory:
 Special note:
 I would like the communities assistance with helping prove and or disprove this theory.  I have limited resources with computational power to really analyze the symbolic regression, but do believe the current correlation is undeniable. The larger the computational resources, the more zeta's that can be tested and as the equation grows the MSE (Mean Square Error) gets smaller. 
 
-- One side benefit to using this equation finder is it can possibly be of assistance with finding equations for encryption since the only way you can decrypt the outputs is by having the original equation that you can make with this. 
+- One side benefit to using this equation finder is it can possibly be of assistance with finding equations that could be good for encryption purposes.  
 
 
 
