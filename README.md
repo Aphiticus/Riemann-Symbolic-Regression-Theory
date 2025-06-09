@@ -9,12 +9,12 @@ The Riemann Hypothesis stands as one of the most significant unsolved problems i
 Historically, numerous mathematicians have dedicated efforts to solving the hypothesis, utilizing diverse numerical, analytical, and computational methods. While these approaches have yielded increasingly accurate predictions of the non-trivial zeros often referred to as "zetas" none have yet resulted in a definitive proof. This persistent challenge highlights the critical need for alternative and innovative strategies in mathematical research.
 
 Abstract
-The theory introduced here is an alternative computational methodology termed here as the Riemann Symbolic Regression Theory which leverages computational tools, specifically the Zeta Calculator (Barnett, 2025) and Zeta Equation Search (Barnett, 2025), to uncover hidden symbolic relationships within the Zeta zeros. Using precise zeros generated from the Zeta Calculator, the Equation Finder systematically identifies increasingly accurate symbolic equations predicting these zeros. Analysis revealed that the longer and more detailed the generated symbolic equations become, the closer their predictions match the actual zeros. This discovery provides concrete computational evidence indicating that hidden symbolic structures could exist within the distribution of zeta zeros. Such structures might help in demonstrating underlying patterns essential to proving the Riemann Hypothesis.
+The theory introduced here is an alternative computational methodology termed here as the Riemann Symbolic Regression Theory which leverages computational tools, specifically the Zeta Creator (Barnett, 2025) and Zeta Equation Search (Barnett, 2025), to uncover hidden symbolic relationships within the Zeta zeros. Using precise zeros generated from the Zeta Creator, the Zeta Equation Search systematically identifies increasingly accurate symbolic equations predicting these zeros. Analysis revealed that the longer and more detailed the generated symbolic equations become, the closer their predictions match the actual zeros. This discovery provides concrete computational evidence indicating that hidden symbolic structures could exist within the distribution of zeta zeros. Such structures might help in demonstrating underlying patterns essential to proving the Riemann Hypothesis.
 
 Methodological Evidence
-The research began with numerical data derived from a precise computational Zeta Calculator, accurately determining the positions of 2500 non-trivial zeros of the Riemann Zeta function. These computed zeros became input data for a symbolic regression algorithm, known as the Zeta Equation Search.
+The research began with numerical data derived from a precise computational Zeta Creator, accurately determining the positions of 2500 non-trivial zeros of the Riemann Zeta function. These computed zeros became input data for a symbolic regression algorithm, known as the Zeta Equation Search.
 Symbolic regression, unlike traditional numerical methods, seeks explicit symbolic mathematical expressions that directly map input numbers (like indices or initial approximations) to the computed zeros. Iterative testing by the Zeta Equation Search revealed equations of increasing complexity, each providing a progressively closer approximation of the actual Zeta zero positions.
-A significant observation from these symbolic equations was a clear trend: increasing the complexity of symbolic equations consistently enhanced accuracy, with predictions converging ever closer to exact values computed via the Zeta Calculator. The complexity here denotes additional symbolic terms or layers added to the equations discovered by the Equation Finder.
+A significant observation from these symbolic equations was a clear trend: increasing the complexity of symbolic equations consistently enhanced accuracy, with predictions converging ever closer to exact values computed via the Zeta Creator. The complexity here denotes additional symbolic terms or layers added to the equations discovered by the Equation Finder.
 Here is a sample of the Zeta’s used with the Zeta Equation Search (See Figure 1). 
 Column Meanings
 •	s:
@@ -56,19 +56,19 @@ The core theoretical proposal from this finding is straightforward yet profound:
 More explicitly:
 •	Initially, simpler symbolic expressions found by the Equation Finder showed general approximations of zeros.
 •	Adding more symbolic complexity (extra terms, operations, and constants identified during regression) improved accuracy significantly.
-•	As complexity grows, the symbolic equations approach an exact match of the Zeta Calculator outputs, strongly suggesting that an intrinsic symbolic nature governs the zeta zero distribution.
+•	As complexity grows, the symbolic equations approach an exact match of the Zeta Creator outputs, strongly suggesting that an intrinsic symbolic nature governs the zeta zero distribution.
 This clear progression of improving accuracy through symbolic complexity supports a theoretical interpretation: the non-trivial zeros could adhere to symbolic patterns rather than purely numerical or random distributions. Consequently, symbolic regression equations represent intrinsic mathematical truths underlying the zeros' positioning.
 Significance and Implications
 If the symbolic structure observed can be generalized or rigorously demonstrated, it would imply the potential existence of closed-form symbolic solutions or expressions that govern the zeros. Such structures could provide an entirely new approach to address and possibly resolve the Riemann Hypothesis.
 In essence, this approach contributes to the Riemann Hypothesis literature by presenting computational evidence of structured symbolic relationships in zeta zeros. It suggests symbolic regression as not merely a numerical tool but a conceptual bridge between numerical data and analytic symbolic formulations necessary for mathematical breakthroughs.
 
 Summary
-In summary, the Riemann Symbolic Regression Theory presented here leverages computationally accurate zeta zero calculations (from the Zeta Calculator) and symbolic equation extraction (through the Equation Finder) to demonstrate progressively accurate symbolic approximations of the zeros. The observed pattern of increased accuracy with equation complexity strongly supports the theory that symbolic structures inherently underpin the Riemann Zeta function's zeros. This insight offers a fresh theoretical direction toward resolving one of mathematics' most enduring puzzles, the Riemann Hypothesis.
+In summary, the Riemann Symbolic Regression Theory presented here leverages computationally accurate zeta zero Creator (from the Zeta Creator) and symbolic equation extraction (through the Zeta Equation Search) to demonstrate progressively accurate symbolic approximations of the zeros. The observed pattern of increased accuracy with equation complexity strongly supports the theory that symbolic structures inherently underpin the Riemann Zeta function's zeros. This insight offers a fresh theoretical direction toward resolving one of mathematics' most enduring puzzles, the Riemann Hypothesis.
 
 Reference
 Britannica. (n.d.). Riemann hypothesis. Retrieved from https://www.britannica.com/science/Riemann-hypothesis
-Barnett, A. (2025). Zeta Calculator [Computer software]. Retrieved from https://github.com/Aphiticus/Riemann-Symbolic-Regression-Theory/tree/main
-Barnett, A. (2025). Equation Finder [Computer software]. Retrieved from https://github.com/Aphiticus/Riemann-Symbolic-Regression-Theory/tree/main
+Barnett, A. (2025). Zeta Creator [Computer software]. Retrieved from https://github.com/Aphiticus/Riemann-Symbolic-Regression-Theory/tree/main
+Barnett, A. (2025). Zeta Equation Search [Computer software]. Retrieved from https://github.com/Aphiticus/Riemann-Symbolic-Regression-Theory/tree/main
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 Instruction for how to test theory:
@@ -83,7 +83,7 @@ Instruction for how to test theory:
 Special note:
 I would like the communities assistance with helping prove and or disprove this theory.  I have limited resources with computational power to really analyze the symbolic regression, but do believe the current correlation is undeniable. The larger the computational resources, the more zeta's that can be tested and as the equation grows the MSE (Mean Square Error) gets smaller. 
 
-- One side benefit to using this equation finder is it can possibly be of assistance with finding equations that could be good for encryption purposes.  
+- One side benefit to using this Zeta Equation Search is it can possibly be of assistance with finding equations that could be good for encryption purposes.  
 
 
 
