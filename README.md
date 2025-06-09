@@ -83,8 +83,7 @@ Instruction for how to test theory:
 Special note:
 I would like the communities assistance with helping prove and or disprove this theory.  I have limited resources with computational power to really analyze the symbolic regression, but do believe the current correlation is undeniable. The larger the computational resources, the more zeta's that can be tested and as the equation grows the MSE (Mean Square Error) gets smaller. 
 
-- One side benefit to using this Zeta Equation Search is it can possibly be of assistance with finding equations that could be good for encryption purposes.  
-
+- One side benefit to using this Zeta Equation Search is it can possibly be of assistance with finding equations that could be good for encryption purposes.  You can approximate the Riemann zeta function along its critical line by first generating precise data points and then using symbolic regression (like with PySR) to evolve an equation that captures its key patterns—especially the distribution of zeros, which is linked to prime numbers. These unpredictable and complex patterns could inspire new cryptographic methods, such as innovative key generation or encryption schemes that rely on inherent mathematical hardness.
 
 
 Acknowledgements
